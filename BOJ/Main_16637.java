@@ -1,117 +1,58 @@
-/*
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.LinkedList;
-import java.util.Scanner;
-import java.util.Stack;
-import java.util.StringTokenizer;
+import java.io.*;
+import java.util.*;
 
-class Main {
-	static int n, total = Integer.MIN_VALUE;
-	static char[] board;
-	static int[] place = new int[2];
+public class Main {
+	static int N;
+	static ArrayList<Integer> num;
+	static ArrayList<Character> op;
+	static int answer = Integer.MIN_VALUE;
 
-	public static void main(String arg[]) throws Exception {
-		Scanner sc = new Scanner(System.in);
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-		n = sc.nextInt();
-		
-		board = sc.next().toCharArray();
-		System.out.println((int)'0');
-		calcul(0, 0);
-		conv(0, 0);
-		
-		System.out.println(total);
+		N = Integer.parseInt(br.readLine());
+		char[] cArr = br.readLine().toCharArray();
+		num = new ArrayList<>();
+		op = new ArrayList<>();
 
+		for (int i = 0; i < N; i++) {
+			if ((i + 1) % 2 == 1) {
+				num.add(Character.getNumericValue(cArr[i]));
+			} else {
+				op.add(cArr[i]);
+			}
+		}
+
+		dfs(0, num.get(0));
+
+		bw.write(answer + "\n");
+
+		br.close();
+		bw.close();
 	}
 
-	private static void conv(int cnt, int start) {
-		if (cnt == 2) {
-			// 계산
-			calcul(place[0], place[1]);
+	public static void dfs(int idx, int sum) {
+		if (idx == op.size()) {
+			answer = Math.max(answer, sum);
 			return;
 		}
 
-		for (int i = start; i < n + 2; i++) {
-			if (cnt == 0 || place[0] > start - 4)
-				continue;
+		dfs(idx + 1, calculate(sum, num.get(idx + 1), op.get(idx))); // 괄호 치고 넘기기
 
-			place[cnt] = i;
-			conv(cnt + 1, i + 1);
+		if (idx + 2 <= op.size()) {
+			dfs(idx + 2, calculate(sum, calculate(num.get(idx + 1), num.get(idx + 2), op.get(idx + 1)), op.get(idx))); // 괄호 안 치고 넘기기
 		}
-
 	}
 
-	private static void calcul(int i, int j) {
-		Stack<Character> stack = new Stack<>();
-		int sum = 0;
-		
-		if (i == j) {
-			for (int num = n-1;num>=0;num--) {
-				stack.add(board[num]);
-			}
-
-			while (stack.size() != 1) {
-				int n1 = stack.pop() - '0';
-				char method = stack.pop();
-				int n2 = stack.pop() - '0';
-				sum = 0;
-				// 계산
-				if (method == '+') {
-					sum = (n1 + n2);
-				} else if (method == '*') {
-					sum = (n1 * n2);
-				} else {
-					sum = n1 - n2;
-				}
-
-				stack.add((char) sum);
-			}
-
+	public static int calculate(int a, int b, char op) {
+		if (op == '+') {
+			return a + b;
+		} else if (op == '-') {
+			return a - b;
 		} else {
-			StringBuilder sb = new StringBuilder();
-			for (int num = n-1;num>=0;num--) {
-				if (num == i)
-					stack.add('(');
-				else if (num == j)
-					stack.add(')');
-
-				stack.add(board[num]);
-			}
-
-			for (int a = 0; a < i; a++) {
-				sb.append(stack.pop());
-			}
-
-			while (stack.size() != 1) {
-
-				if (stack.peek() == '(' || stack.peek() == ')') {
-					stack.pop();
-				}
-
-				int n1 = stack.pop() - '0';
-				char method = stack.pop();
-				int n2 = stack.pop() - '0';
-				sum = 0;
-				
-				// 계산
-				if (method == '+') {
-					sum = (n1 + n2);
-				} else if (method == '*') {
-					sum = (n1 * n2);
-				} else {
-					sum = n1 - n2;
-				}
-
-				stack.add((char) sum);
-
-			}
-
+			return a * b;
 		}
-		
-		total = Integer.max(total, sum);
-
 	}
 
 }
-*/
