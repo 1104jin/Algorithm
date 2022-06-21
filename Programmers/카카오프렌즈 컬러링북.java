@@ -41,7 +41,7 @@ class Solution {
             if(nx < 0 || nx >= m || ny < 0 || ny >=n || visited[nx][ny]){
                 continue;
             }
-            if(picture[nx][ny] == picture[x][y] && !visited[nx][ny]){
+            if(picture[nx][ny] == picture[x][y]){
 
                 dfs(nx,ny,picture,n,m);
             }
