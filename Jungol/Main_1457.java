@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.StringTokenizer;
 
-public class Main {
+public class Main_1457 {
 	static int[] dx = { 1, 0, -1, 0 };
 	static int[] dy = { 0, 1, 0, -1 };
 	static int[][] map;
