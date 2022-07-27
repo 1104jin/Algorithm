@@ -1,9 +1,7 @@
-package Y_2022.M_01.D_12;
-
 import java.io.*;
 import java.util.StringTokenizer;
 
-public class mna_5086 {
+public class code_5086 {
 
 	public static void main(String[] args) throws Exception {
 		BufferedReader bd = new BufferedReader(new InputStreamReader(System.in));

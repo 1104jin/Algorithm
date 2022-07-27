@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class Main {
+public class Main_17070 {
 	static int N;
 	static int[][] map;
 	static int cnt = 0;

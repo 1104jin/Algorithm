@@ -1,5 +1,3 @@
-package self.BJ;
-
 import java.util.Scanner;
 
 public class Main_14891 {

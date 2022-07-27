@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-class Main {
+class Main_14502 {
 	static int n, m, total = Integer.MIN_VALUE;
 	static int[][] map, remap;
 	static int[] dx = {1,-1,0,0};

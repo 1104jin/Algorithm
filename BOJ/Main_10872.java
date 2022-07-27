@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class factorial_10872 {
+public class Main_10872 {
 	public static int factorial(int n) {
 		if(n <= 1) return 1;
 		else return factorial(n-1) * n; 

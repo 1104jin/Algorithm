@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class Main {
+public class Main_16637 {
 	static int N;
 	static ArrayList<Integer> num;
 	static ArrayList<Character> op;
